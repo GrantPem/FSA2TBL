@@ -1,4 +1,4 @@
-def fasta_to_tbl_with_translation(nucleotide_fasta, amino_fasta, output_file, gene_name, product, note, codon_start=1, partialF, partialR):
+def fasta_to_tbl_with_translation(nucleotide_fasta, amino_fasta, output_file, gene_name, product, note, codon_start=1):
 
     # Read nucleotide FASTA
     with open(nucleotide_fasta, 'r') as nuc_fasta, open(amino_fasta, 'r') as aa_fasta, open(output_file, 'w') as tbl:
@@ -18,11 +18,11 @@ def fasta_to_tbl_with_translation(nucleotide_fasta, amino_fasta, output_file, ge
                     
                     
                     # gene feature
-                    tbl.write(f"{partialF}1    {partialR}{bp_end}    gene\n")
+                    tbl.write(f"<1    >{bp_end}    gene\n")
                     tbl.write(f"                        gene           {gene_name}\n")
                     
                     # CDS feature
-                    tbl.write(f"{partialF}1    {partialR}{bp_end}    CDS\n")
+                    tbl.write(f"<1    >{bp_end}    CDS\n")
                     tbl.write(f"                        product        {product}\n")
                     tbl.write(f"                        note           {note}\n")
                     tbl.write(f"                        codon_start    {codon_start}\n")
@@ -56,11 +56,11 @@ def fasta_to_tbl_with_translation(nucleotide_fasta, amino_fasta, output_file, ge
             
             
             # Add the gene feature
-            tbl.write(f"{partialF}1    {partialR}{bp_end}    gene\n")
+            tbl.write(f"<1    >{bp_end}    gene\n")
             tbl.write(f"                        gene           {gene_name}\n")
             
             # Add the CDS feature
-            tbl.write(f"{partialF}1    {partialR}{bp_end}    CDS\n")
+            tbl.write(f"<1    >{bp_end}    CDS\n")
             tbl.write(f"                        product        {product}\n")
             tbl.write(f"                        note           {note}\n")
             tbl.write(f"                        codon_start    {codon_start}\n")
@@ -69,4 +69,4 @@ def fasta_to_tbl_with_translation(nucleotide_fasta, amino_fasta, output_file, ge
 
 
 #####(nucleotide_fasta, amino_fasta, output_file, gene_name, product, note, codon_start)
-fasta_to_tbl_with_translation("AQP1_E0002.fsa", "AQP1_E0002_AA_Codon1.fasta", "AQP1_E0002.tbl", "AQP1", "Aquaporin 1", "RmAQP1 Exon 1", 1, "<", ">")
+fasta_to_tbl_with_translation("AQP1_E0002.fsa", "AQP1_E0002_AA_Codon1.fasta", "AQP1_E0002.tbl", "AQP1", "Aquaporin 1", "RmAQP1 Exon 1", 1)
